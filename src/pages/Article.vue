@@ -1,0 +1,14 @@
+<script setup>
+import { computed } from 'vue'
+import { ARTICLES, ART_IMG } from '../data/content.js'
+import PageHead from '../components/PageHead.vue'
+
+const props = defineProps({ a: Object })
+const more = computed(() => ARTICLES.filter(x => x.id !== props.a.id).slice(0, 4))
+</script>
+
+<template>
+  <PageHead :img="ART_IMG[a.id]" :crumbs="[['Accueil', 'accueil'], ['Conseils', 'faq'], [a.t]]" label="Conseils & expertise" :h1="a.t" />
+  <section class="sec"><div class="w with-aside"><article class="prose"><template v-for="([t, c], i) in a.body" :key="i"><h2 v-if="t === 'h2'">{{ c }}</h2><p v-else-if="i === 0" class="lede" style="max-width:34ch">{{ c }}</p><p v-else class="sub body-l">{{ c }}</p></template><p class="note">Article d’information générale. Les règles urbanistiques et les aides régionales évoluent : vérifiez les conditions en vigueur auprès de votre commune et de votre Région.</p></article>
+  <aside class="aside"><div class="side-cta"><h3>Un projet en tête ?</h3><p>Nos équipes étudient votre demande et vous conseillent.</p><RouterLink class="btn light" to="/devis">Demander un devis</RouterLink></div><div class="side-links"><p class="label" style="margin-bottom:8px">À lire aussi</p><RouterLink v-for="x in more" :key="x.id" :to="'/conseil-' + x.id">{{ x.t }}</RouterLink></div></aside></div></section>
+</template>
