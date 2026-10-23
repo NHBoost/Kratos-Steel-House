@@ -193,7 +193,7 @@ export const ARTICLES = [
 
 export const REGIONS = [
   { k:'bx', name:'Bruxelles', color:'#17191C', illus:'brussels', communes:['Bruxelles-Ville','Anderlecht','Ixelles','Uccle','Schaerbeek','Woluwe-Saint-Lambert','Woluwe-Saint-Pierre','Etterbeek','Jette','Evere','Auderghem','Forest','Saint-Gilles','Watermael-Boitsfort','Molenbeek','Koekelberg','Ganshoren','Berchem-Sainte-Agathe','Saint-Josse','Bruxelles (19 communes)'].slice(0,19), txt:'Maisons de maître, immeubles et appartements : nous rénovons et transformons dans les 19 communes de la Région bruxelloise.' },
-  { k:'vb', name:'Brabant flamand', color:'#A88A62', illus:'flanders', communes:['Vilvoorde','Zaventem','Machelen','Grimbergen','Dilbeek','Asse','Tervuren','Kortenberg','Louvain'], txt:'Toitures, extensions et rénovations complètes en périphérie bruxelloise et jusqu’à Louvain.' },
+  { k:'vb', name:'Brabant flamand', color:'#E7B650', illus:'flanders', communes:['Vilvoorde','Zaventem','Machelen','Grimbergen','Dilbeek','Asse','Tervuren','Kortenberg','Louvain'], txt:'Toitures, extensions et rénovations complètes en périphérie bruxelloise et jusqu’à Louvain.' },
   { k:'bw', name:'Brabant wallon', color:'#777E86', illus:'villa', communes:['Waterloo','Braine-l’Alleud','Nivelles','Wavre','Rixensart','La Hulpe','Lasne','Ottignies-Louvain-la-Neuve'], txt:'Villas et maisons familiales : façades, toitures, extensions et transformations haut de gamme.' }
 ];
 

@@ -16,7 +16,7 @@ function lang(l) {
 
 <template>
   <header :class="['hdr', { solid, 'on-light': onLight }]"><div class="w">
-    <RouterLink class="brand" to="/" aria-label="Kratos Steel House, accueil"><b>KRATOS</b><span>STEEL HOUSE</span></RouterLink>
+    <RouterLink class="brand" to="/" aria-label="Kratos Steel House, accueil"><img :src="'img/kratos-wordmark.png'" alt="" width="513" height="120"></RouterLink>
     <nav class="nav" aria-label="Navigation principale">
       <template v-for="[k, label] in links" :key="k">
         <div v-if="k === 'services'" class="hs"><RouterLink :to="'/' + k" :aria-current="key === k ? 'page' : 'false'">{{ label }}</RouterLink><div class="dd"><RouterLink v-for="s in SERVICES" :key="s.slug" :to="'/' + s.slug">{{ s.short }}</RouterLink></div></div>
