@@ -1,4 +1,5 @@
 <script setup>
+import { P } from '../paths.js'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { SERVICES } from '../data/content.js'
@@ -40,7 +41,7 @@ function submit() {
   if (first) { first.focus(); first.scrollIntoView({ block: 'center', behavior: 'smooth' }); return }
   if (d.website) return
   state.lastLead = { client: d.client, svc: d.svc, cp: d.cp.trim(), desc: d.desc.trim(), surf: d.surf, budget: d.budget, when: d.when, files: files.value.filter(x => !x.bad).map(x => x.name), name: d.name.trim(), tel: d.tel.trim(), email: d.email.trim(), counted: false }
-  router.push('/merci')
+  router.push(P.merci)
 }
 const inv = k => k in bad ? String(bad[k]) : null
 </script>
@@ -59,7 +60,7 @@ const inv = k => k in bad ? String(bad[k]) : null
     <div :class="['f', { bad: bad.tel }]"><label :for="id('tel')">Téléphone *</label><input :ref="el => els.tel = el" v-model="d.tel" type="tel" :id="id('tel')" name="tel" autocomplete="tel" :aria-invalid="inv('tel')"><span class="err">Indiquez un numéro de téléphone valide.</span></div>
     <div :class="['f full', { bad: bad.email }]"><label :for="id('email')">E-mail *</label><input :ref="el => els.email = el" v-model="d.email" type="email" :id="id('email')" name="email" autocomplete="email" :aria-invalid="inv('email')"><span class="err">Indiquez une adresse e-mail valide, par ex. nom@exemple.be.</span></div>
     <div class="hp" aria-hidden="true"><label :for="id('web')">Site web</label><input v-model="d.website" type="text" :id="id('web')" name="website" tabindex="-1" autocomplete="off"></div>
-    <div :class="['f full', { bad: bad.consent }]"><label class="check" style="text-transform:none;letter-spacing:0;font-size:.9rem;font-weight:400"><input :ref="el => els.consent = el" v-model="d.consent" type="checkbox" :id="id('consent')" name="consent" :aria-invalid="inv('consent')"><span>J’accepte que Kratos Steel House utilise ces informations pour traiter ma demande, conformément à la <RouterLink to="/confidentialite">politique de confidentialité</RouterLink>. *</span></label><span class="err">Votre accord est nécessaire pour traiter la demande.</span></div>
+    <div :class="['f full', { bad: bad.consent }]"><label class="check" style="text-transform:none;letter-spacing:0;font-size:.9rem;font-weight:400"><input :ref="el => els.consent = el" v-model="d.consent" type="checkbox" :id="id('consent')" name="consent" :aria-invalid="inv('consent')"><span>J’accepte que Kratos Steel House utilise ces informations pour traiter ma demande, conformément à la <RouterLink :to="P.confidentialite">politique de confidentialité</RouterLink>. *</span></label><span class="err">Votre accord est nécessaire pour traiter la demande.</span></div>
     <div class="full acts"><button class="btn" type="submit">Envoyer ma demande</button><span class="sub" style="font-size:.8rem">Maquette : aucune donnée n’est envoyée.</span></div>
   </form>
 </template>

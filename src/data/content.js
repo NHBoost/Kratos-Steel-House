@@ -7,7 +7,7 @@ export const IMG = {
   interior:'interior', interior2:'interior-2', stair:'stair', kitchen:'kitchen', bath:'bath', insulation:'insulation',
   plans:'plans', brussels:'brussels', square:'square', canal:'canal', detail:'detail'
 };
-export const src = k => `img/${IMG[k]||k}.jpg`;
+export const src = k => `/img/${IMG[k]||k}.webp`;
 export const SVC_IMG = {
   'construction-generale':['timber','scaffold'],
   'renovation-generale':['interior','reno'],

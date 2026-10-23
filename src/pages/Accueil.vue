@@ -1,4 +1,5 @@
 <script setup>
+import { P } from '../paths.js'
 import { ref } from 'vue'
 import { SERVICES, PROJECTS, SVC_IMG, REGIONS, FAQ, src } from '../data/content.js'
 import Ph from '../components/Ph.vue'
@@ -21,13 +22,13 @@ const reasons = [['Plus de 20 ans d’expérience', 'Une expertise développée 
       <h1>Construction &amp; Rénovation haut de gamme en Belgique</h1>
       <div class="hero-foot">
         <p>Depuis plus de 20 ans, Kratos Steel House donne vie à vos projets de construction et de rénovation avec exigence, savoir-faire et finitions premium. À Bruxelles, dans les deux Brabants et partout en Belgique.</p>
-        <div class="acts"><RouterLink class="btn light" to="/devis">Demander un devis</RouterLink><RouterLink class="tl" to="/realisations">Nos réalisations</RouterLink></div>
+        <div class="acts"><RouterLink class="btn light" :to="P.devis">Demander un devis</RouterLink><RouterLink class="tl" :to="P.realisations">Nos réalisations</RouterLink></div>
       </div>
     </div>
   </section>
 
   <section class="sec"><div class="w intro">
-    <div class="t"><p class="label" style="margin-bottom:32px">Kratos Steel House</p><p class="lede">Votre partenaire de confiance pour tous vos projets de construction et de rénovation. Un résultat durable, esthétique, parfaitement exécuté.</p><div class="acts"><RouterLink class="tl" to="/entreprise">Découvrir l’entreprise</RouterLink></div></div>
+    <div class="t"><p class="label" style="margin-bottom:32px">Kratos Steel House</p><p class="lede">Votre partenaire de confiance pour tous vos projets de construction et de rénovation. Un résultat durable, esthétique, parfaitement exécuté.</p><div class="acts"><RouterLink class="tl" :to="P.entreprise">Découvrir l’entreprise</RouterLink></div></div>
     <div class="p1"><Ph k="stair" cls="r-34" alt="Escalier en chêne dans un intérieur rénové" /></div>
     <div class="c"><p class="body-l sub">Forte de plus de 20 ans d’expérience, notre entreprise belge accompagne particuliers, architectes et investisseurs dans leurs travaux de construction, de rénovation complète, de toiture, de façade, d’isolation et d’extension.</p><p class="body-l sub mt-s">Notre exigence se retrouve dans chaque détail, du choix des matériaux jusqu’aux dernières finitions.</p></div>
     <div class="p2"><Ph k="brickModern" cls="r-169" alt="Maison contemporaine en briques" /></div>
@@ -40,13 +41,13 @@ const reasons = [['Plus de 20 ans d’expérience', 'Une expertise développée 
   <section class="sec"><div class="w">
     <div class="head"><h2>Nos expertises</h2><p>Construire, rénover et transformer avec exigence. Chaque métier dispose de sa page détaillée.</p></div>
     <div class="sidx">
-      <div class="slist"><RouterLink v-for="(s, i) in SERVICES" :key="s.slug" :class="['srow', { on: i === active }]" :to="'/' + s.slug" @mouseenter="active = i"><h3>{{ s.short }}</h3><span class="more">Découvrir</span><p>{{ s.card }}</p></RouterLink></div>
+      <div class="slist"><RouterLink v-for="(s, i) in SERVICES" :key="s.slug" :class="['srow', { on: i === active }]" :to="P.service(s.slug)" @mouseenter="active = i"><h3>{{ s.short }}</h3><span class="more">Découvrir</span><p>{{ s.card }}</p></RouterLink></div>
       <div class="sview"><div class="ph"><img v-for="(s, i) in SERVICES" :key="s.slug" :src="src(SVC_IMG[s.slug][0])" :alt="s.short" :class="i === active ? 'on' : ''" loading="lazy"></div><div class="cap"><span>{{ SERVICES[active].short }}</span><span>Bruxelles · Brabants</span></div></div>
     </div>
   </div></section>
 
   <section class="sec stone"><div class="w">
-    <div class="head"><h2>Des projets qui témoignent de notre savoir-faire.</h2><RouterLink class="tl" to="/realisations">Toutes les réalisations</RouterLink></div>
+    <div class="head"><h2>Des projets qui témoignent de notre savoir-faire.</h2><RouterLink class="tl" :to="P.realisations">Toutes les réalisations</RouterLink></div>
     <div class="pgrid feat"><ProjCard v-for="(p, i) in featured" :key="p.id" :p="p" :cls="featCls[i]" /></div>
   </div></section>
 
@@ -64,11 +65,11 @@ const reasons = [['Plus de 20 ans d’expérience', 'Une expertise développée 
     <div class="map"><BeMap /></div>
     <div class="tx"><p class="label">Zones d’intervention</p><h2>Une expertise locale, un savoir-faire dans toute la Belgique.</h2>
       <div class="regions"><div v-for="r in REGIONS" :key="r.k" class="region"><h3>{{ r.name }}</h3><p>{{ r.communes.slice(0, 6).join(', ') }}…</p></div><div class="region"><h3>Toute la Belgique</h3><p>Projets étudiés selon leur nature et leur importance.</p></div></div>
-      <div><RouterLink class="tl" to="/zones">Toutes les communes</RouterLink></div></div>
+      <div><RouterLink class="tl" :to="P.zones">Toutes les communes</RouterLink></div></div>
   </div></section>
 
   <section class="sec s stone"><div class="w quote-empty"><div class="qm" aria-hidden="true">“</div><div><p class="lede" style="max-width:34ch">Cet espace accueillera les témoignages authentiques de nos clients : prénom, commune et type de travaux.</p><p class="sub mt-s">Seuls des avis réels, publiés avec l’accord des clients, y figureront.</p></div></div></section>
 
-  <section class="sec"><div class="w split top"><div class="tx"><h2>Questions fréquentes</h2><p class="sub">Vous ne trouvez pas votre réponse ? Parlez-nous de votre projet.</p><div><RouterLink class="tl" to="/faq">Toute la FAQ</RouterLink></div></div><FaqList :items="FAQ.slice(0, 5)" /></div></section>
+  <section class="sec"><div class="w split top"><div class="tx"><h2>Questions fréquentes</h2><p class="sub">Vous ne trouvez pas votre réponse ? Parlez-nous de votre projet.</p><div><RouterLink class="tl" :to="P.faq">Toute la FAQ</RouterLink></div></div><FaqList :items="FAQ.slice(0, 5)" /></div></section>
   <Cta />
 </template>

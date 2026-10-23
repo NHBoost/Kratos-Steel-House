@@ -1,4 +1,5 @@
 <script setup>
+import { P } from './paths.js'
 import { ref, computed, watch, nextTick, onMounted, onBeforeUnmount } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { state } from './store.js'
@@ -42,7 +43,7 @@ onBeforeUnmount(() => { window.removeEventListener('scroll', onScroll); io?.disc
     </RouterView>
   </main>
   <SiteFooter />
-  <div :class="['mbar', { show: y > 500 }]"><RouterLink to="/devis">Demander un devis</RouterLink></div>
+  <div :class="['mbar', { show: y > 500 }]"><RouterLink :to="P.devis">Demander un devis</RouterLink></div>
   <CookieBanner />
   <div :class="['toast', { show: state.toast.show }]" role="status" aria-live="polite">{{ state.toast.msg }}</div>
 </template>

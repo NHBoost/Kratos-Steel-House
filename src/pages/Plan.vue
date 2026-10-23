@@ -15,7 +15,7 @@ const sections = [
 
 <template>
   <PageHead :crumbs="[['Accueil', 'accueil'], ['Plan du site']]" h1="Plan du site" lede="Pages et URL de production prévues (/fr/, architecture /nl/ prête)." />
-  <section class="sec" style="padding-top:20px"><div class="w sitemap">
+  <section class="sec" style="padding-top:20px"><div class="w sitemap"><h2 class="sr-only">Toutes les pages du site</h2>
     <section v-for="[t, items] in sections" :key="t"><h3>{{ t }}</h3><RouterLink v-for="[l, h, u] in items" :key="h" :to="to(h)">{{ l }}<small>{{ u }}</small></RouterLink></section>
   </div></section>
 </template>

@@ -1,4 +1,5 @@
 <script setup>
+import { P } from '../paths.js'
 import { ref, watch, onMounted } from 'vue'
 import { state, store, showCookie, saveConsent } from '../store.js'
 
@@ -19,7 +20,7 @@ onMounted(() => { if (!store.get('ksh_consent')) setTimeout(() => showCookie(fal
 <template>
   <div class="cookie" id="cookie" :hidden="!state.cookie.open" role="dialog" aria-labelledby="ck-t">
     <h4 id="ck-t">Cookies</h4>
-    <p>Nous utilisons des cookies nécessaires et, avec votre accord, des cookies de mesure d’audience et publicitaires. <RouterLink to="/cookies">En savoir plus</RouterLink></p>
+    <p>Nous utilisons des cookies nécessaires et, avec votre accord, des cookies de mesure d’audience et publicitaires. <RouterLink :to="P.cookies">En savoir plus</RouterLink></p>
     <div class="prefs" :hidden="!state.cookie.prefs">
       <label>Nécessaires <input type="checkbox" checked disabled></label>
       <label for="ck-an">Mesure d’audience <input v-model="an" type="checkbox" id="ck-an"></label>

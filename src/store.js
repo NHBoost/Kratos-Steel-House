@@ -1,4 +1,7 @@
 import { reactive } from 'vue'
+import { fromKey } from './paths.js'
+
+const browser = typeof window !== 'undefined'
 
 export const store = {
   get(k) { try { return JSON.parse(localStorage.getItem(k)) } catch (e) { return null } },
@@ -12,8 +15,9 @@ export const state = reactive({
   cookie: { open: false, prefs: false }
 })
 
-window.dataLayer = window.dataLayer || []
+if (browser) window.dataLayer = window.dataLayer || []
 export function track(event, params = {}) {
+  if (!browser) return
   const c = store.get('ksh_consent')
   if (c && c.analytics) window.dataLayer.push({ event, ...params })
 }
@@ -40,5 +44,5 @@ export function scrollToId(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 
-// '#accueil' -> '/', '#services' -> '/services', etc.
-export const to = k => (!k || k === 'accueil') ? '/' : '/' + k
+// Clé de page ('accueil', 'services', 'projet-x'…) -> URL publique
+export const to = fromKey
