@@ -11,7 +11,7 @@ npm run dev      # développement : http://localhost:5173/fr/
 npm run build    # production : pages HTML pré-rendues dans dist/
 ```
 
-Le domaine utilisé pour les canonical, le sitemap et Open Graph est `https://www.kratossteelhouse.be`.
+Le domaine utilisé pour les canonical, le sitemap et Open Graph est `https://www.kratossteelhouse.com`.
 Pour en changer : `VITE_SITE_URL=https://mon-domaine.be npm run build` (ou modifier `src/paths.js`).
 
 ## Mise en ligne

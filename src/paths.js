@@ -2,7 +2,7 @@
 import { svcBySlug } from './data/content.js'
 
 // Domaine de production : surchargeable avec VITE_SITE_URL au build
-export const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://www.kratossteelhouse.be').replace(/\/$/, '')
+export const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://www.kratossteelhouse.com').replace(/\/$/, '')
 
 export const P = {
   home: '/fr/',
