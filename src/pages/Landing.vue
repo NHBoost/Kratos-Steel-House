@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { PROJECTS, PROJ_IMG, SVC_IMG, src } from '../data/content.js'
+import { PROJECTS, PROJ_IMG, SVC_IMG, src, srcset } from '../data/content.js'
 import { scrollToId } from '../store.js'
 import Ph from '../components/Ph.vue'
 import FaqList from '../components/FaqList.vue'
@@ -12,7 +12,7 @@ const proj = computed(() => PROJECTS.filter(p => p.svc === props.s.slug).concat(
 </script>
 
 <template>
-  <section class="hero"><div class="bg"><img :src="src(SVC_IMG[s.slug][0])" alt="" fetchpriority="high"></div><div class="w">
+  <section class="hero"><div class="bg"><img :src="src(SVC_IMG[s.slug][0])" :srcset="srcset(SVC_IMG[s.slug][0])" sizes="100vw" alt="" fetchpriority="high"></div><div class="w">
     <p class="label" style="color:#E3E3E0;margin-bottom:22px">{{ s.short }} · Bruxelles &amp; Brabants</p>
     <h1 style="max-width:16ch">{{ s.hook }}</h1>
     <div class="hero-foot"><p>Plus de 20 ans d’expérience, des finitions haut de gamme et un interlocuteur unique pour votre chantier.</p><div class="acts"><a class="btn light" href="#lp-form" @click.prevent="scrollToId('lp-form')">Recevoir une proposition</a></div></div>

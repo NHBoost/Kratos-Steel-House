@@ -1,9 +1,11 @@
 // Balises <head> par page : titre, description, canonical, robots, Open Graph et JSON-LD.
 // Utilisé au pré-rendu (HTML statique) et à chaque navigation côté navigateur.
-import { SERVICES, PROJECTS, ARTICLES, FAQ, SVC_IMG, PROJ_IMG, ART_IMG, svcBySlug, src } from './data/content.js'
+import { SERVICES, PROJECTS, ARTICLES, FAQ, SVC_IMG, PROJ_IMG, ART_IMG, svcBySlug, src, srcset } from './data/content.js'
 import { P, SITE_URL, abs } from './paths.js'
 
 const BRAND = 'Kratos Steel House'
+// Pages dont l'en-tête est une grande photo (élément LCP à précharger)
+const PHOTO_HEAD = new Set(['accueil', 'entreprise', 'services', 'realisations', 'zones', 'faq', 'service', 'projet', 'article', 'lp'])
 const projById = Object.fromEntries(PROJECTS.map(p => [p.id, p]))
 const artById = Object.fromEntries(ARTICLES.map(a => [a.id, a]))
 
@@ -182,7 +184,7 @@ export function seoFor(route) {
     robots: s.robots || 'index, follow, max-image-preview:large',
     image: SITE_URL + src(s.img),
     ogType: s.ogType || 'website',
-    preload: type === 'accueil' ? src('hero') : null,
+    preload: PHOTO_HEAD.has(type) ? s.img : null,
     jsonld: ld.length ? { '@context': 'https://schema.org', '@graph': ld } : null
   }
 }
@@ -204,7 +206,7 @@ export function headTags(m) {
   t.push(`<meta property="og:url" content="${escAttr(m.url)}" data-seo>`)
   t.push(`<meta property="og:image" content="${escAttr(m.image)}" data-seo>`)
   t.push(`<meta name="twitter:card" content="summary_large_image" data-seo>`)
-  if (m.preload) t.push(`<link rel="preload" as="image" href="${m.preload}" fetchpriority="high" data-seo>`)
+  if (m.preload) t.push(`<link rel="preload" as="image" href="${src(m.preload)}" imagesrcset="${srcset(m.preload)}" imagesizes="100vw" fetchpriority="high" data-seo>`)
   if (m.jsonld) t.push(`<script type="application/ld+json" data-seo>${JSON.stringify(m.jsonld).replace(/</g, '\\u003c')}</script>`)
   return t.join('\n')
 }

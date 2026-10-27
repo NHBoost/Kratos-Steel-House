@@ -8,6 +8,8 @@ export const IMG = {
   plans:'plans', brussels:'brussels', square:'square', canal:'canal', detail:'detail'
 };
 export const src = k => `/img/${IMG[k]||k}.webp`;
+// Images pleine largeur : 800 px sur mobile, 1600 px au-delà
+export const srcset = k => `/img/${IMG[k]||k}-800.webp 800w, ${src(k)} 1600w`;
 export const SVC_IMG = {
   'construction-generale':['timber','scaffold'],
   'renovation-generale':['interior','reno'],
@@ -200,3 +202,21 @@ export const REGIONS = [
 export const STEPS = [['Échange et analyse','Compréhension de vos besoins, de vos attentes et des contraintes du bâtiment.'],['Étude et proposition','Visite technique et remise d’une proposition détaillée, adaptée au projet.'],['Réalisation','Mise en œuvre, coordination des corps de métier et suivi du chantier.'],['Finitions et livraison','Contrôle de chaque détail et réception des travaux avec vous.']];
 
 export const svcBySlug = Object.fromEntries(SERVICES.map(s => [s.slug, s]));
+
+// Conseils liés à chaque service (maillage interne services <-> articles)
+export const SVC_ARTICLES = {
+  'construction-generale': ['preparer-renovation', 'demarches-extension'],
+  'renovation-generale': ['preparer-renovation', 'valoriser-bien', 'ameliorer-peb'],
+  'renovation-toiture': ['materiau-toiture', 'ameliorer-peb'],
+  'facade-crepi': ['isolation-facade', 'valoriser-bien'],
+  'isolation-thermique': ['ameliorer-peb', 'isolation-facade'],
+  'creation-lucarnes': ['creation-lucarne-points', 'valoriser-bien'],
+  'extensions-annexes': ['demarches-extension', 'valoriser-bien'],
+  'gros-oeuvre-transformations': ['demarches-extension', 'preparer-renovation']
+};
+
+// Les n éléments qui suivent `item` dans la liste (en boucle) : chaque page reçoit autant de liens
+export const following = (list, item, n) => {
+  const i = list.indexOf(item);
+  return Array.from({ length: Math.min(n, list.length - 1) }, (_, k) => list[(i + 1 + k) % list.length]);
+};

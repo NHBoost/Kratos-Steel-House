@@ -1,7 +1,7 @@
 <script setup>
 import { P } from '../paths.js'
 import { ref } from 'vue'
-import { SERVICES, PROJECTS, SVC_IMG, REGIONS, FAQ, src } from '../data/content.js'
+import { SERVICES, PROJECTS, SVC_IMG, REGIONS, FAQ, src, srcset } from '../data/content.js'
 import Ph from '../components/Ph.vue'
 import ProjCard from '../components/ProjCard.vue'
 import Steps from '../components/Steps.vue'
@@ -16,7 +16,7 @@ const reasons = [['Plus de 20 ans d’expérience', 'Une expertise développée 
 </script>
 
 <template>
-  <section class="hero"><div class="bg"><img :src="src('hero')" alt="Maison contemporaine au crépuscule" fetchpriority="high"></div>
+  <section class="hero"><div class="bg"><img :src="src('hero')" :srcset="srcset('hero')" sizes="100vw" alt="Maison contemporaine au crépuscule" fetchpriority="high"></div>
     <div class="w">
       <p class="label" style="color:#E3E3E0;margin-bottom:22px">Entreprise générale · Construction &amp; rénovation</p>
       <h1>Construction &amp; Rénovation haut de gamme en Belgique</h1>
